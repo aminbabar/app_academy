@@ -2,6 +2,10 @@
 # and returns the sum of all numbers in the array.
 
 
+def multi_dimensional_sum(array) 
+    array.flatten.sum
+end
+
 arr_1 = [
     [4, 3, 1],
     [8, 1],
