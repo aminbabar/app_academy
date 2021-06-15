@@ -11,7 +11,10 @@
 
 
 def my_rotate!(array, amt)
-
+    (amt).times do
+        array << array.shift()
+    end
+    array
 end
 
 
