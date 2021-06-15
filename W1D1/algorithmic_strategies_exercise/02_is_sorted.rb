@@ -3,6 +3,19 @@
 # Do not use the built-in Array#sort in your solution :)
 
 
+
+def is_sorted(arr)
+    prev = false
+    arr.each do |ele|
+        prev = ele if !prev
+        return false if prev > ele
+        prev = ele
+    end
+    true
+end
+
+
 p is_sorted([1, 4, 10, 13, 15])       # => true
 p is_sorted([1, 4, 10, 10, 13, 15])   # => true
 p is_sorted([1, 2, 5, 3, 4 ])         # => false
+
