@@ -1,5 +1,17 @@
 
 
+require "byebug"
+
+
+def strange_sums(arr)
+    sum = 0
+    (0...arr.length).each do |i|
+        (i...arr.length).each do |j|
+            sum += 1 if arr[i] + arr[j] == 0
+        end
+    end
+    sum
+end
 
 # p strange_sums([2, -3, 3, 4, -2])     # 2
 # p strange_sums([42, 3, -1, -42])      # 1
@@ -9,7 +21,14 @@
 
 
 
-
+def pair_product(arr, product)
+    (0...arr.length).each do |i|
+        (i...arr.length).each do |j|
+            return true if j > i && arr[i] * arr[j] == product 
+        end
+    end
+    false
+end
 # p pair_product([4, 2, 5, 8], 16)    # true
 # p pair_product([8, 1, 9, 3], 8)     # true
 # p pair_product([3, 4], 12)          # true
@@ -19,12 +38,28 @@
 # p pair_product([3], 12)             # false
 
 
+
+def rampant_repeats(string, hash)
+    new_str = ""
+    string.each_char do |char|
+        new_str += (hash[char]) ? char * hash[char] : char
+    end
+    new_str
+end
+
 # p rampant_repeats('taco', {'a'=>3, 'c'=>2})             # 'taaacco'
 # p rampant_repeats('feverish', {'e'=>2, 'f'=>4, 's'=>3}) # 'ffffeeveerisssh'
 # p rampant_repeats('misispi', {'s'=>2, 'p'=>2})          # 'mississppi'
 # p rampant_repeats('faarm', {'e'=>3, 'a'=>2})            # 'faaaarm'
 
 
+
+
+
+
+def perfect_square(num)
+    return (Math.sqrt(num) > Math.sqrt(num).to_i) ? false : true
+end
 
 
 # p perfect_square(1)     # true
@@ -38,7 +73,9 @@
 # p perfect_square(50)    # false
 
 
-
+###################################
+# PHASE 2
+###################################
 
 # p anti_prime?(24)   # true
 # p anti_prime?(36)   # true
