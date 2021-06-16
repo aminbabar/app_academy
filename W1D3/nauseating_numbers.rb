@@ -53,10 +53,6 @@ end
 # p rampant_repeats('faarm', {'e'=>3, 'a'=>2})            # 'faaaarm'
 
 
-
-
-
-
 def perfect_square(num)
     return (Math.sqrt(num) > Math.sqrt(num).to_i) ? false : true
 end
@@ -73,10 +69,34 @@ end
 # p perfect_square(50)    # false
 
 
-###################################
-# PHASE 2
-###################################
 
+
+
+
+######################################################################
+# PHASE 2
+######################################################################
+
+
+
+
+
+def anti_prime?(number)
+    max = 0
+    (1...number).each do |i|
+        factors = num_factors(i)
+        max = factors if factors > max
+    end
+    # debugger
+    (max > num_factors(number)) ? false : true
+end
+
+
+def num_factors(num)
+    sum = 0
+    (1..num).each {|i| sum += 1 if num % i == 0}
+    sum
+end
 # p anti_prime?(24)   # true
 # p anti_prime?(36)   # true
 # p anti_prime?(48)   # true
@@ -89,6 +109,19 @@ end
 # p anti_prime?(1024) # false
 
 
+
+
+
+def matrix_addition(matrix1, matrix2)
+    resultant = Array.new(matrix1.length) {[]}
+
+    (0...matrix1.length).each do |i|
+        (0...(matrix1[0].length)).each do |j|
+            resultant[i] << matrix1[i][j] + matrix2[i][j]
+        end
+    end
+    resultant
+end
 
 # matrix_a = [[2,5], [4,7]]
 # matrix_b = [[9,1], [3,0]]
@@ -106,6 +139,20 @@ end
 
 
 
+def mutual_factors(*args)
+    common = []
+    all_factors = Hash.new(0)
+    args.each {|nums| calculate_factors(nums, all_factors)}
+    all_factors.each {|key, value| common << key if value == args.length}
+    common
+end
+
+def calculate_factors(num, all_factors)
+    (1..num).each do |i|
+        all_factors[i] += 1 if num % i == 0
+    end
+end
+
 # p mutual_factors(50, 30)            # [1, 2, 5, 10]
 # p mutual_factors(50, 30, 45, 105)   # [1, 5]
 # p mutual_factors(8, 4)              # [1, 2, 4]
@@ -119,6 +166,17 @@ end
 
 
 
+def tribonacci_number(n)
+    if n == 1
+        return 1
+    elsif n == 2
+        return 1
+    elsif n == 3
+        return 2
+    end
+
+    return tribonacci_number(n-1) + tribonacci_number(n-2) + tribonacci_number(n-3)
+end
 
 
 # p tribonacci_number(1)  # 1
@@ -129,6 +187,16 @@ end
 # p tribonacci_number(6)  # 13
 # p tribonacci_number(7)  # 24
 # p tribonacci_number(11) # 274
+
+
+
+
+
+######################################################################
+# PHASE 3
+######################################################################
+
+
 
 
 
