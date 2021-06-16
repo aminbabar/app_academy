@@ -46,6 +46,5 @@ def power_of_two?(number)
     end
 
     number == 1.0 ? true : false
-    
 end
 
