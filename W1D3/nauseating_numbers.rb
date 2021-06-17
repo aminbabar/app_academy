@@ -371,6 +371,24 @@ end
 
 
 
+def mersenne_prime(num)
+    found = 0
+    square = 4
+    while true
+        if is_prime?(square - 1)
+            found += 1
+        end
+        return (square - 1) if num == found
+        square *= 2
+    end
+end
+
+
+def is_prime?(num)
+    return false if num < 2
+    (2...num).none? {|i| num % i == 0}
+end
+
 # p mersenne_prime(1) # 3
 # p mersenne_prime(2) # 7
 # p mersenne_prime(3) # 31
