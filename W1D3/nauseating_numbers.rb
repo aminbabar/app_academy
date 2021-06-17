@@ -199,7 +199,13 @@ end
 
 
 
+def matrix_addition_reloaded(*args)
+    # width = args[0][0]
+    # height = args[0][0][0]
 
+    # args.each {|matrix| return false if matrix.}
+
+end
 
 # matrix_a = [[2,5], [4,7]]
 # matrix_b = [[9,1], [3,0]]
@@ -216,11 +222,28 @@ end
 
 
 
+# Better time efficiency than the solution
+def squarocol?(multi_array)
 
+    col_bool = true
+    row_bool = true
+    (0...multi_array.length).each do |row|
+        first_col = multi_array[0][row]
+        first_row = multi_array[row][0]
+        (0...multi_array.length).each do |col|
+            col_bool = false if multi_array[col][row] != first_col
+            row_bool = false if multi_array[row][col] != first_row
+        end
+        return true if col_bool || row_bool
+        row_bool, col_bool = true, true 
+    end
+
+    return false
+end
 
 
 # p squarocol?([
-#     [:a, :x , :d],
+#     [:a, :x , :d],    
 #     [:b, :x , :e],
 #     [:c, :x , :f],
 # ]) # true
@@ -253,7 +276,28 @@ end
 
 
 
+def squaragonal?(multi_array)     #0,0  1,1  2,2      0,2  1,1  2,0
 
+    first = multi_array[0][0]
+    rTol = true
+    (0...multi_array.length).each do |i|
+        rTol = false if multi_array[i][i] != first
+    end
+
+    i = 0
+    j = multi_array.length - 1
+
+    first =  multi_array[i][j]
+    lTor = true
+    while j >= 0
+        lTor = false if multi_array[i][j] != first
+        i += 1
+        j -= 1
+    end
+
+
+    lTor || rTol
+end
 
 
 # p squaragonal?([
@@ -284,6 +328,19 @@ end
 
 
 
+def pascals_triangle(n)
+    pascal = [[1]]
+    while pascal.length < n
+        new_row = [1]
+        (0...pascal[-1].length - 1).each do |i|
+            new_row << pascal[-1][i] + pascal[-1][i + 1]
+        end
+        new_row << 1
+        pascal << new_row
+    end
+    pascal
+end
+
 
 
 # p pascals_triangle(5)
@@ -295,7 +352,7 @@ end
 # #     [1, 4, 6, 4, 1]
 # # ]
 
-# p pascals_triangle(7)
+# p pascals_triangle(1000)
 # # [
 # #     [1],
 # #     [1, 1],
@@ -307,6 +364,10 @@ end
 # # ]
 
 
+
+######################################################################
+# PHASE 4
+######################################################################
 
 
 
