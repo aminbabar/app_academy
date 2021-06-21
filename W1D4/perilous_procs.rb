@@ -1,6 +1,8 @@
 
 
-def some?()
+def some?(arr, &prc)
+    arr.each {|ele| return true if prc.call(ele)}
+    false
 end
 
 # p some?([3, 1, 11, 5]) { |n| n.even? }                                # false
@@ -11,6 +13,11 @@ end
 # p some?(['parsnip', 'lettuce', 'pea']) { |str| str[0] == 'p' }        # true
 
 
+def exactly?(arr, n, &prc)
+    count = 0
+    arr.each {|ele| count += 1 if prc.call(ele)}
+    count == n
+end
 
 
 # p exactly?(['A', 'b', 'C'], 2) { |el| el == el.upcase }         # true
@@ -25,12 +32,28 @@ end
 
 
 
+
+
+
+def filter_out(arr, &prc)
+    new_arr = []
+    arr.each {|ele| new_arr << ele if !prc.call(ele)}
+    new_arr
+end
+
 # p filter_out([10, 6, 3, 2, 5 ]) { |x| x.odd? }      # [10, 6, 2]
 # p filter_out([1, 7, 3, 5 ]) { |x| x.odd? }          # []
 # p filter_out([10, 6, 3, 2, 5 ]) { |x| x.even? }     # [3, 5]
 # p filter_out([1, 7, 3, 5 ]) { |x| x.even? }         # [1, 7, 3, 5]
 
 
+
+
+def at_least?(array, n, &prc)
+    count = 0
+    array.each {|ele| count += 1 if prc.call(ele)}
+    count >= n
+end
 
 # p at_least?(['sad', 'quick', 'timid', 'final'], 2) { |s| s.end_with?('ly') }
 # # false
@@ -57,6 +80,10 @@ end
 
 
 
+def every?(arr, &prc)
+    arr.each {|ele| return false if !prc.call(ele)}
+    true
+end
 
 # p every?([3, 1, 11, 5]) { |n| n.even? }                                 # false
 # p every?([2, 4, 4, 8]) { |n| n.even? }                                  # true
@@ -68,6 +95,13 @@ end
 
 
 
+
+
+def at_most?(arr, n, &prc)
+    count = 0
+    arr.each {|ele| count += 1 if prc.call(ele)}
+    count <= n
+end
 # p at_most?([-4, 100, -3], 1) { |el| el > 0 }                         # true
 # p at_most?([-4, -100, -3], 1) { |el| el > 0 }                        # true
 # p at_most?([4, 100, -3], 1) { |el| el > 0 }                          # false
@@ -77,6 +111,12 @@ end
 # p at_most?(['r', 'i', 'e', 'o'], 2) { |el| 'aeiou'.include?(el) }    # false
 
 
+
+
+def first_index(arr, &prc)
+    arr.each_with_index {|ele, i| return i if prc.call(ele)}
+    nil
+end
 
 # p first_index(['bit', 'cat', 'byte', 'below']) { |el| el.length > 3 }           # 2
 # p first_index(['bitten', 'bit', 'cat', 'byte', 'below']) { |el| el.length > 3 } # 0
