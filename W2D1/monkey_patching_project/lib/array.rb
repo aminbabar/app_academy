@@ -43,7 +43,7 @@ class Array
   end
 
 
-  def my_uniq   #!!!!!!
+  def my_uniq
     hash = Hash.new(0)
     self.each {|ele| hash[ele] += 1}
     hash.keys
@@ -62,3 +62,6 @@ class Array
 
 
 end
+
+
+
