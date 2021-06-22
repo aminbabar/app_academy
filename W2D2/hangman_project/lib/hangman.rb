@@ -14,7 +14,7 @@ class Hangman
   end
 
 
-  def self.random_word()        # !!!
+  def self.random_word()
     DICTIONARY.sample
   end
 
@@ -62,7 +62,6 @@ class Hangman
 
 
   def win?
-    # debugger
     if @guess_word.join("") == @secret_word
       p "WIN"
       return true
