@@ -43,7 +43,7 @@ class Board
 
 
     def win_col?(mark)
-        (0...@grid.length).each.each do |i|
+        (0...@grid.length).each do |i|
             win = true
             (0...@grid[0].length).each do |j|
                 win = false if @grid[j][i] != mark
