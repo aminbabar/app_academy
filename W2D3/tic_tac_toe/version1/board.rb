@@ -1,4 +1,4 @@
-
+require "byebug"
 
 class Board
     
@@ -55,7 +55,7 @@ class Board
 
 
     def win_diagonal?(mark)
-        self.find_in_direction([1, -1], mark, [0, 0]) || self.find_in_direction([-1, -1], mark, [@grid[0].length - 1, @grid.length - 1])
+        self.find_in_direction([1, 1], mark, [0, 0]) || self.find_in_direction([1, -1], mark, [0, @grid.length - 1])
     end
 
     def find_in_direction(dir, mark, start)
@@ -73,11 +73,11 @@ class Board
 
 
     def win?(mark)
-        self.win_col(mark) || self.win_diagonal(mark) || self.win_row(mark)
+        self.win_col?(mark) || self.win_row?(mark) || self.win_diagonal?(mark)
     end
 
     def empty_positions?()
-        @grid.flaten.any? {|ele| ele == "_"}
+        @grid.flatten.any? {|ele| ele == "_"}
     end
 
 
