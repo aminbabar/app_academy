@@ -210,8 +210,8 @@ describe "Board" do
         context "when the given token has not completely filled up any horizontal row" do
             it "should return false" do
                 stacks_1 = [
-                    ['y', 'b', 'y', 'y', 'y', 'y' ],
                     ['b', 'b'],
+                    ['y', 'b', 'y', 'y', 'y', 'y' ],
                     ['y', 'b','y'],
                     ['b', 'b'],
                     ['b', 'b', 'b'],
